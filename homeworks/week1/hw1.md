@@ -11,10 +11,11 @@
 ```
 3.在本地檔案寫完作業儲存並更新commit至GitHub
 ```
-    git commit -am 新的commit
+    git commit -am "commit messange (跟commit 有關的相關訊息)"
     git push origin 新的branch
 ```
 4.發布pull request，將新的branch merge進去master
 ```
     上傳後在GitHub 點選Compare & pull request
 ```
+PS. 如果有新增檔案需要git add 先將先的檔案加入track

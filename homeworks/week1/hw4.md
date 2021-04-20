@@ -21,7 +21,7 @@ git init
 2.新增第一個笑話檔加入版本控制並開始記錄版本
 
 ```
- couch 諧音梗笑話1
+ touch 諧音梗笑話1
  git add 諧音梗笑話1
  git commit -m "joke1"
 ```
@@ -31,5 +31,5 @@ git init
 並根據GitHub的步驟複製貼上code至gitbash上建立GitHub與本機的連結
 git push origin main 上傳至GitHub
 當然菜哥也可以在GitHub上修改笑話後並下載下來至本機
-git pull
+git pull origin master
 ```
