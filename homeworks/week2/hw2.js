@@ -1,13 +1,13 @@
 // A:65 Z:90 a:97 z:122 A-a:32
 function capitalize(str) {
-    var new_str = str.split('')
+    var newStr = str.split('')
     if (str[0].charCodeAt() >= 97 && str[0].charCodeAt() <= 122){
-        new_str[0] = str[0].toUpperCase()
-        new_str = new_str.join('')
-        return new_str
+        newStr[0] = str[0].toUpperCase()
+        newStr = newStr.join('')
+    } else{
+        newStr = str
     }
-    return str
+    return newStr
 }
 
 console.log(capitalize('hello'));
-
