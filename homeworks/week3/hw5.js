@@ -14,7 +14,7 @@ rl.on('close', () => {
   solve(lines)
 })
 
-function isBigger(a, b) {
+function whichIsBigger(a, b) {
   for (let i = 0; i < a.length; i++) {
     if (Number(a[i]) > Number(b[i])) {
       return 'a'
@@ -38,11 +38,11 @@ function solve(lines) {
       console.log('A')
     } else if (((a.length < b.length) && (c === 1)) || ((a.length > b.length) && (c === -1))) {
       console.log('B')
-    } else if (isBigger(a, b) === 'draw') {
+    } else if (whichIsBigger(a, b) === 'draw') {
       console.log('DRAW')
-    } else if (((isBigger(a, b) === 'a') && (c === 1)) || ((isBigger(a, b) === 'b') && (c === -1))) {
+    } else if (((whichIsBigger(a, b) === 'a') && (c === 1)) || ((whichIsBigger(a, b) === 'b') && (c === -1))) {
       console.log('A')
-    } else if (((isBigger(a, b) === 'a') && (c === -1)) || ((isBigger(a, b) === 'b') && (c === 1))) {
+    } else if (((whichIsBigger(a, b) === 'a') && (c === -1)) || ((whichIsBigger(a, b) === 'b') && (c === 1))) {
       console.log('B')
     }
   }
