@@ -15,7 +15,13 @@ request.get({
     return
   }
 
-  const info = JSON.parse(body)
+  try {
+        info = JSON.parse(body)
+      } catch (error) {
+        console.log(error)
+        return
+      }
+
   const data = info.top
   for (let i = 0; i < data.length; i++) {
     console.log(`${data[i].viewers} ${data[i].game.name}`)
