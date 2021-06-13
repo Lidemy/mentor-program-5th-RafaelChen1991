@@ -5,13 +5,13 @@
 
 
 ## 請問什麼是盒模型（box modal）
-  box model 可以由 content padding border margin 等四個部分由內而外構成， 其中 margin 代表外邊距 主要負責對外的距離且必定為透明，padding為內邊距是往內的距離設定，border則為邊框，可為box可視之最大範圍，content為內容。
+  box model 由 content padding border margin 等四個部分由內而外構成， 其中 margin 代表外邊距 主要負責對外的距離且必定為透明，padding為內邊距是往內的距離設定，border則為邊框，可為box可視之最大範圍，content為內容。
 
 
 ## 請問 display: inline, block 跟 inline-block 的差別是什麼？
-  inline: 元素可在同一行呈現，不可設定長寬， span、a、img等標籤為代表
-  block: 一行只能有一個block 可自由設定長寬， div、p、ul li等標籤為代表
-  inline-block: 結合前兩者，可在同一行餒有多個元素 卻又可以設店長寬
+  inline: 元素可在同一行呈現，不可設定寬高， span、a、img等標籤為代表
+  block: 一行只能有一個block 可自由設定寬高， div、p、ul li等標籤為代表
+  inline-block: 結合前兩者，可在同一行內有多個元素 卻又可以設定寬高
 
 ## 請問 position: static, relative, absolute 跟 fixed 的差別是什麼？
   position主要用來設定標籤的位置，可分為以下四種:
