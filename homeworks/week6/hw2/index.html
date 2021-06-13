@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>報名表單</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+  <style>
+    body {
+      font-family: MicrosoftJhengHei;
+      background: lightgray;
+    }
+
+    .table {
+      width: 400px; 
+      height: 1085px;
+      margin: 165px auto 66px auto;
+      background: white;
+      padding: 54px 298px 35px 39px;
+      box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+      border-top: solid 8px #fad312;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+      letter-spacing: -1.8px;
+      text-align: left;
+    }
+
+    .dateplace {
+      font-size: 14px;
+      text-align: left;
+      line-height: 20px;
+    }
+
+    #firstnotice {
+      text-align: left;
+      margin: 22px 264px 55px 2px;
+      font-size: 16px;
+      color: #e74149;
+    }
+
+    .content {
+      width:fit-content;
+      font-weight: bold;
+      font-size: 20px;
+      text-align: left; 
+      position: relative;
+    }
+
+    .notice {
+      color: #e74149;
+      position: absolute;
+      top: -5px;
+      right: -15px;
+    }
+
+    .answer {
+    width: 100px;
+    height: 23px;
+    margin: 20px 20px 49px 1px;
+    padding: 5px 223px 3px 1px;
+    border: solid 1px #d0d0d0;
+    color: #afafaf;
+    cursor: text;
+    }
+
+    .type_answer {
+      margin-top: 10px;
+      margin-bottom: 30px;
+      line-height: 30px;
+    }
+
+    .button{
+      width: 35px;
+      height: 14px;
+      padding: 13px 31px;
+      font-size: 15px;
+      background: #fad312;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .button:hover{
+    }
+
+    .footer {
+      height: 50px;
+      background: #000000;
+      text-align: center;
+      color: #999999;
+      font-size: 16px;
+      padding: 12px 12px;
+      border-top: solid 2px #fad312;
+      line-height: 50px;
+    }
+
+    @media(max-width: 768px) {
+      .footer {
+        width: 250%;
+      }
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div class='table'>
+  <h1>新拖延運動報名表單</h1>
+  <p class='dateplace'>
+    活動日期: 2020/12/10 ~ 2020/12/11
+    <br>
+    活動地點: 台北市大安區新生南路二段1號
+  </p>
+  <div id='firstnotice'>
+    * 必填
+  </div>
+  <div class='allcontent'>
+    <div class='content name'>
+      暱稱
+      <div class='notice'>
+        *
+      </div>
+    </div>
+    <div>
+      <input class='answer name' placeholder='您的回答' />
+    </div>
+    <div class='content email'>
+      電子信箱
+      <div class='notice'>
+        *
+      </div>
+    </div>
+    <div>
+      <input class='answer email' placeholder='您的電子信箱' />
+    </div>
+    <div class='content phone'>
+      手機號碼
+      <div class='notice'>
+        *
+      </div>
+    </div>
+    <div>
+      <input class='answer phone' placeholder='您的手機號碼' />
+    </div>
+    <div class='content type'>
+      報名類型
+      <div class='notice'>
+        *
+      </div>
+    </div>
+    <div class='type_answer type'>
+      <input type='radio' id='bed' name='type' /><label for='bed'>躺在床上用想像力實作</label><br>
+      <input type='radio' id='floor' name='type' /><label for='floor'>趴在地上滑手機找現成的</label> 
+    </div>
+    <div class='content howToKnow'>
+      怎麼知道這個活動的
+      <div class='notice'>
+        *
+      </div>
+    </div>
+    <div> 
+      <input class='answer howtoknow' placeholder='您的回答' />
+    </div>
+    <div class='content howtoknow'>
+      其他
+    </div>
+    <p>對一些活動的建議</p>    
+    <div> 
+      <input class='answer howtoknow' placeholder='您的回答' />
+    </div>
+  </div>
+  <div class='button'>
+    提交
+  </div>
+  <p>請勿透過表單送出您的密碼。</p>
+  </div>
+  <footer class='footer'>
+      © 2020 © Copyright. All rights Reserved.
+  </footer>
+</body>
+</html>
