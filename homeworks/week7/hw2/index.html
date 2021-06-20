@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>餐廳官網_FQA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+  <style>
+    .navbar {
+      box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+      padding: 0px 20px;
+    }
+
+    .navbar .wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 84px;
+      background: white;
+    }
+
+    .navbar__site-name {
+      color: #489846;
+      font-size: 36px;
+    }
+
+    .navbar__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      font-size: 18px;
+    }
+    .navbar__list li {
+      margin-left: 12px;
+      border-radius: 8px;
+      transition: background 0.1s;
+    }
+
+    .navbar__list li:hover, .navbar__list li.active {
+      background: #ff7286;
+    }
+
+    .navbar__list li.active a, .navbar__list li:hover a {
+      color: white;
+    }
+
+    .navbar__list li a {
+      display: block;
+      text-decoration: none;
+      color: black;
+      padding: 12px 24px;
+    }
+
+    .wrapper {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0px 12px;
+    }
+
+    h2 {
+      margin: 0;
+    }
+
+    .section {
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .section__title {
+      display: inline-block;
+      font-size: 36px;
+      border-left: solid 15px #a3dea2;
+      padding-left: 17px;
+      margin-bottom: 36px;
+    }
+
+    .faq-block {
+      margin: 0 auto;
+      max-width: 768px;
+    }
+
+    .faq-item {
+      display: flex;
+      text-align: left;
+      padding-bottom: 24px;
+      border-bottom: solid 1px #a6e2c0;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .faq-item + .faq-item {
+      margin-top: 29px;
+    }
+
+    .faq-item__number {
+      color: #70b282;
+      font-size: 24px;
+      margin-right: 16px;
+      line-height: 24px;
+    }
+
+    .faq-item__content h2 {
+      font-size: 18px;
+      margin: 0;
+      font-weight: normal;
+      line-height: 24px;
+    }
+
+    .faq-item__content p {
+      font-size: 16px;
+    }
+
+    .faq-item--hide {
+      height: 15px;
+    }
+
+
+    footer {
+      margin-top: 48px;
+    }
+
+    .footer__bottom {
+      background: #35564b;
+      padding: 12px 0px;
+      text-align: center;
+      color: white;
+      font-size: 16px;
+      padding: 12px 12px;
+    }
+
+    .footer__top {
+      background: #e8efee;
+      padding: 32px;
+    }
+
+    .footer__top .wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer__info {
+      margin-right: 16px;
+    }
+
+    .footer__info div + div {
+      margin-top: 10px;
+    }
+
+    .footer__site {
+      font-size: 36px;
+      color: #489846;
+    }
+
+
+    @media(max-width: 768px) {
+      body{
+        margin: 0;
+      }
+      
+      .navbar .wrapper {
+        height: 120px;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0px;
+      }
+
+      .navbar__site-name {
+        margin-top: 10px;
+      }
+
+      .navbar__list {
+        display: flex;
+        width: 100%;
+      }
+
+      .navbar__list li {
+        flex: 1;
+        margin-left: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+
+      .footer__top .wrapper {
+        flex-direction: column-reverse;
+      }
+
+      .footer__info {
+        margin-right: 0;
+        margin-top: 16px;
+      }
+
+      .section_allcontent {
+        flex-direction: column;
+      }
+    }
+
+
+
+  </style>
+
+</head>
+
+<body>
+  <nav class='navbar'>
+    <div class='wrapper'>
+      <div class='navbar__site-name'>
+        Just A Bite!
+      </div>
+      <ul class='navbar__list'>
+        <li><a href="#">抽個大獎</a></li>
+        <li><a href="#">我要點餐</a></li>
+        <li><a href="#">查詢訂單</a></li>
+        <li class='active'><a href="#">常見問題</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class='wrapper'>
+    <section class= 'section'>
+    <div id='qaContent'>
+      <h2 class='section__title'>
+        FAQ - 常見問題
+      </h2>
+      <div class='faq-block'>
+
+        <div class='faq-item faq-item--hide'>
+          <div class='faq-item__number'>
+            Q1:
+          </div>
+          <div class='faq-item__content'>
+            <h2>如何辦理退貨?</h2>
+            <p>請您盡快Just A Bite!的線上客服，讓我們在開始做餐前替您取消；如果遇上退款或其他線上的帳務問題，請您直接與我們聯繫。</p>
+          </div>
+        </div>
+          
+        <div class='faq-item faq-item--hide'>
+          <div class='faq-item__number'>
+            Q2:
+          </div>
+          <div class='faq-item__content'>
+            <h2>目前提供哪些付款方式?</h2>
+            <p>
+            目前接受『貨到付款』和『信用卡付款』兩種付款方式：<br><br>
+
+            1.貨到付款<br>
+            請在付款方式欄位下選擇「貨到付款」，我們的外送人員將會在餐點送達時一併與您收款，收款金額包含餐點的製作準備費用，以及Just A Bite!平台服務費。<br><br>
+
+            2.信用卡付款<br>
+            在付款頁面選擇「信用卡付款」，在您下單後，將會被引導至安全的線上付款頁面，您可按照網站的指示完成付款，付款金額包含餐點的製作準備費用，以及Just A Bite!平台服務費。在付款成功後，Just A Bite!將會立即開始處理您的訂單。
+            </p>
+          </div>
+        </div>
+    
+ 
+        <div class='faq-item faq-item--hide'>
+          <div class='faq-item__number'>
+            Q3:
+          </div>
+          <div class='faq-item__content'>
+            <h2>線上刷卡如何操作呢?</h2>
+            <p>目前可接受VISA、Master Card、JCB，三家發卡組織的信用卡。 在付款頁面選擇「信用卡付款」，在您下單後，將會被引導至安全的線上付款頁面，您可按照網站的指示完成付款，付款金額包含餐點的製作準備費用，以及Just A Bite!平台服務費。在付款成功後，Just A Bite!將會立即開始處理您的訂單。</p>
+          </div>
+        </div>
+
+        <div class='faq-item faq-item--hide'>
+          <div class='faq-item__number'>
+            Q4:
+          </div>
+          <div class='faq-item__content'>
+            <h2>如何查詢目前訂單的處理情況?</h2>
+            <p>請至本站「顧客中心」的「查訂單」功能。</p>
+          </div>
+        </div>
+
+        <div class='faq-item faq-item--hide'>
+          <div class='faq-item__number'>
+            Q5:
+          </div>
+          <div class='faq-item__content'>
+            <h2>訂單成立後，是否可以取消或是更改訂單數量及商品?</h2>
+            <p>由於受限營運、認證中心和銀行規範，無法變更訂單付款方式、內容、金額或是退補差額方式換購其它商品，因此尚無法提供線上網路直接由顧客取消訂單或修改，如有需要變更，我們建議最晚於貨到７日內至本站「顧客中心」申請退訂再重訂。</p>
+          </div>
+        </div>
+
+        <div class='faq-item faq-item--hide'>
+          <div class='faq-item__number'>
+            Q6:
+          </div>
+          <div class='faq-item__content'>
+            <h2>我想購買的商品已經缺貨，什麼時候會進貨呢?</h2>
+            <p>倘若官網⾴⾯顯⽰該品項為缺貨狀態，您可 E-mail ⾄ Just A Bite! 客服中⼼確認補貨時間。</p>
+          </div>
+        </div>
+
+        <div class='faq-item faq-item--hide'>
+          <div class='faq-item__number'>
+            Q7:
+          </div>
+          <div class='faq-item__content'>
+            <h2>若是對送來的餐點不滿意(例如:食物過涼/項目缺少或其他),我該怎麼做??</h2>
+            <p>請立即與我們聯絡，我們會馬上為您處理。</p>
+          </div>
+        </div>
+
+        <div class='faq-item faq-item--hide'>
+          <div class='faq-item__number'>
+            Q8:
+          </div>
+          <div class='faq-item__content'>
+            <h2>如何線上訂餐？</h2>
+            <p>只要三個步驟：<br><br>
+
+            1.選擇外送地點：於首頁輸入您所在的區域及路段，系統即會顯示所有可以送到您所在位置的餐廳。<br><br>
+
+            2.選擇您喜愛的食物：選擇您喜歡的餐廳與餐點。<br><br>
+
+            3.結帳：輸入您訂餐要送達的詳細地址、電話號碼並選擇付款方式。請確認您的電話地址是否正確，以免Just A Bite!無法與您聯繫。完成結帳後，您就可以悠閒地等食物送到家囉。</p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    </section>
+  </div>
+  <footer>
+    <div class='footer__top'>
+      <div class='wrapper'>
+        <div class='footer__info'>
+          <div>餐館地址: 天上地下天堂路三分之一里六段520號</div>
+          <div>訂位專線：02-1314-5566</div>
+          <div>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</div>
+          <div>email：service@justabite.com.tw</div>
+        </div>
+        <div>
+          <div class='footer__site'>Just A Bite!</div>
+          <div>Facebook / Instagram / Youtube</div>
+        </div>
+      </div>
+    </div>
+    <div class='footer__bottom'>
+      Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有
+    </div>
+  </footer>
+  <script>
+    document.querySelector('.faq-block').addEventListener('click', 
+      function(e) {
+        const element = e.target.closest('.faq-item')
+        if (element) {
+          element.classList.toggle('faq-item--hide')
+        }
+      }
+    )
+
+
+  </script>
+</body>
+</html>
+
