@@ -193,11 +193,11 @@
           </div>
         </div>
         
-        <div class='content'>
+        <div class='content others'>
           <div class='content__title'>其他</div>
           <p>對一些活動的建議</p>
           <div class='allAnswer'> 
-            <input class='answer' placeholder='您的回答' />
+            <input class='answer' placeholder='您的回答' type='text' name='others'/>
           </div>
         </div>           
       </div>
@@ -233,7 +233,7 @@
 
           if (!radios.length) continue
           let hasValue =  [...radios].some(radio => radio.checked)
-          let r = element.querySelector('input[type=radio]:checked')
+          let r = element.querySelectorAll('input[type=radio]:checked')
           values[r.name] = r.value
           if (!hasValue) {
             element.classList.remove('hide-checked')
@@ -241,10 +241,18 @@
           } else {
             element.classList.add('hide-checked')
           }
-          }
-          if (!hasError) {
-            alert(JSON.stringify(values))
-          }
+        }
+          
+        const others = document.querySelector('.others')
+        const otherTexts = others.querySelector('input[type=text]')
+        if (others) {
+          values[otherTexts.name] = otherTexts.value
+        }
+
+      
+        if (!hasError) {
+          alert(JSON.stringify(values))
+        }
           
         }
       )
