@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>報名表單</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+    <style>
+      body {
+        font-family: MicrosoftJhengHei;
+        background: lightgray;
+      }
+
+      .table {
+        width: 400px; 
+        height: 1085px;
+        margin: 165px auto 66px auto;
+        background: white;
+        padding: 54px 298px 35px 39px;
+        box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+        border-top: solid 8px #fad312;
+      }
+
+      h1 {
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: -1.8px;
+        text-align: left;
+      }
+
+      .dateplace {
+        font-size: 14px;
+        text-align: left;
+        line-height: 20px;
+      }
+
+      #firstNotice {
+        text-align: left;
+        margin: 22px 264px 55px 2px;
+        font-size: 16px;
+        color: #e74149;
+      }
+
+
+      .content__title {
+        width:fit-content;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: left; 
+        position: relative;
+      }
+
+      .notice {
+        color: #e74149;
+        position: absolute;
+        top: -5px;
+        right: -15px;
+      }
+
+      .allAnswer {
+        position: relative;
+      }
+
+      .answer {
+      width: 100px;
+      height: 23px;
+      margin: 20px 20px 49px 1px;
+      padding: 5px 223px 3px 1px;
+      border: solid 1px #d0d0d0;
+      color: black;
+      cursor: text;
+      }
+      
+      ::placeholder {
+        color: #afafaf;
+      }
+
+      .type_answer {
+        margin-top: 10px;
+        margin-bottom: 0px;
+        line-height: 30px;
+        padding-bottom: 45px;
+        position: relative;
+      }
+
+      .checkAnswer {
+        color: red;
+        position: absolute;
+        bottom: 20px;
+      }
+
+      .btn {
+        padding: 12px 32px;
+        font-size: 15px;
+        background: #fad312;
+        cursor: pointer;
+        border-radius: 4px;
+        border: none;
+      }
+
+      .btn:hover{
+      }
+
+      .footer {
+        height: 50px;
+        background: #000000;
+        text-align: center;
+        color: #999999;
+        font-size: 16px;
+        padding: 12px 12px;
+        border-top: solid 2px #fad312;
+        line-height: 50px;
+      }
+
+      .hide-checked .checkAnswer {
+        visibility: hidden;
+      }
+
+
+      @media(max-width: 768px) {
+        .footer {
+          width: 250%;
+        }
+      }
+
+
+    </style>
+  </head>
+
+
+
+  <body>
+    <div class='table'>
+    <h1>新拖延運動報名表單</h1>
+    <p class='dateplace'>
+      活動日期: 2020/12/10 ~ 2020/12/11<br>
+      活動地點: 台北市大安區新生南路二段1號
+    </p>
+    <div id='firstNotice'>
+      * 必填
+    </div>
+    <form>
+      <div class='allContent'>
+        <div class='content name required hide-checked'>
+          <div class='content__title'>暱稱
+            <div class='notice'>*</div>
+          </div>
+          <div class='allAnswer'>
+            <input class='answer name' placeholder='您的回答' type='text' name='nickname'/>
+            <div class='checkAnswer'>請輸入暱稱</div>
+          </div>
+        </div>
+
+        <div class='content email required hide-checked'>
+          <div class='content__title'>電子信箱
+            <div class='notice'>*</div>
+          </div>
+          <div class='allAnswer'>
+            <input class='answer email' placeholder='您的電子信箱' type='text' name='email'/>
+            <div class='checkAnswer'>請輸入電子信箱</div>
+         </div>
+        </div>
+        
+        <div class='content phone required hide-checked'>
+          <div class='content__title'>手機號碼
+            <div class='notice'>*</div>
+          </div>
+          <div class='allAnswer'>
+            <input class='answer phone' placeholder='您的手機號碼' type='text' name='phone'/>
+            <div class='checkAnswer'>請輸入手機號碼</div>
+          </div>
+        </div>
+        
+        <div class='content type required hide-checked'>
+          <div class='content__title'>報名類型
+            <div class='notice'>*</div>
+          </div>
+          <div class='type_answer type'>
+            <input type='radio' id='bed' name='type' value='1' /><label for='bed'>躺在床上用想像力實作</label><br>
+            <input type='radio' id='floor' name='type' value='2' /><label for='floor'>趴在地上滑手機找現成的</label> 
+              <div class='checkAnswer'>請選擇報名類型</div>
+          </div>
+        </div>
+
+        <div class='content required hide-checked'>
+          <div class='content__title'>怎麼知道這個活動的
+            <div class='notice'>*</div>
+          </div>
+          <div class='allAnswer'> 
+            <input class='answer' placeholder='您的回答' type='text' name='source'/>
+            <div class='checkAnswer'>請回答</div>
+          </div>
+        </div>
+        
+        <div class='content others'>
+          <div class='content__title'>其他</div>
+          <p>對一些活動的建議</p>
+          <div class='allAnswer'> 
+            <input class='answer' placeholder='您的回答' type='text' name='others'/>
+          </div>
+        </div>           
+      </div>
+      <input class='btn' type='submit' />
+      <p>請勿透過表單送出您的密碼。</p>
+      </div>
+    </form>
+    <footer class='footer'>
+        © 2020 © Copyright. All rights Reserved.
+    </footer>
+  </body>
+  <script>
+    document
+      .querySelector('form')
+      .addEventListener('submit', function(e) {
+        e.preventDefault()
+        let hasError = false
+        let values = {}
+
+        const elements = document.querySelectorAll('.required')
+        for (let element of elements) {
+          const radios = element.querySelectorAll('input[type=radio]')
+          const texts = element.querySelector('input[type=text]')
+          if (texts) {
+            values[texts.name] = texts.value
+            if (!texts.value) {
+              element.classList.remove('hide-checked')
+              hasError = true
+            } else {
+              element.classList.add('hide-checked')
+            }
+          }
+
+          if (!radios.length) continue
+          let hasValue =  [...radios].some(radio => radio.checked)
+          let r = element.querySelectorAll('input[type=radio]:checked')
+          values[r.name] = r.value
+          if (!hasValue) {
+            element.classList.remove('hide-checked')
+            hasError = true
+          } else {
+            element.classList.add('hide-checked')
+          }
+        }
+          
+        const others = document.querySelector('.others')
+        const otherTexts = others.querySelector('input[type=text]')
+        if (others) {
+          values[otherTexts.name] = otherTexts.value
+        }
+
+      
+        if (!hasError) {
+          alert(JSON.stringify(values))
+        }
+          
+        }
+      )
+
+  </script>
+</html>
