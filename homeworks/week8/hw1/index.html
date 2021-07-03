@@ -196,10 +196,11 @@
     }
 
     .lottery__result {
+      display: none;
       max-width: 700px
       height: 162px;
       position: absolute;
-      top: 27%;
+      top: 36%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size:36px;
@@ -208,6 +209,12 @@
       text-align: center;
     }
 
+    .lottery__result-tilte {
+      text-align: center;
+      font-size:36px;
+      color: white;
+      margin-bottom: 55px;
+    }
 
     .btn2 {
       box-sizing: border-box;
@@ -309,7 +316,11 @@
       </div>
       <button class='btn'>我要抽獎</button>
     </div>
-
+    <div class='lottery__result'>
+      <div class='lottery__result-tilte'></div>
+      <button class='btn2' onclick='javascript:window.location.reload()'>我要抽獎</button>
+    </div>
+    
   </section>
   <div class='wrapper'>
   <footer>
@@ -333,6 +344,7 @@
   </footer>
   <script>
     const banner = document.querySelector('.banner')
+    const lottery__result = document.querySelector('.lottery__result')
     const request = new XMLHttpRequest()
 
 
@@ -343,39 +355,30 @@
       }
     }
 
-    function addTextForLottery(text) {
-      const div = document.createElement('div')
-      div.classList.add('lottery__result')
-      div.innerHTML = `
-      <p>${text}</p>
-      <button class='btn2'>我要抽獎</button>
-      `
-      banner.appendChild(div)
-    }
-
     
 
     function lottery(prize) {
       if (prize === 'FIRST') {
         banner.style.backgroundImage =  'url("FIRST.jpg")'
         removeElementsByClass('activity')
-        addTextForLottery('恭喜你中頭獎了！日本東京來回雙人遊！')
+        lottery__result.style.display = 'block'
+        document.querySelector('.lottery__result-tilte').innerText = '恭喜你中頭獎了！日本東京來回雙人遊！'
       } else if (prize === 'SECOND') {
         banner.style.backgroundImage =  'url("SECOND.jpg")'
         removeElementsByClass('activity')
-        addTextForLottery('二獎！90 吋電視一台！')
-        document.querySelector('.lottery__result').style.color = 'white'
+        lottery__result.style.display = 'block'
+        document.querySelector('.lottery__result-tilte').innerText = '二獎！90 吋電視一台！'
       } else if (prize === 'THIRD') {
         banner.style.backgroundImage =  'url("THIRD.jpg")'
         removeElementsByClass('activity')
-        addTextForLottery('恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！')
-        document.querySelector('.lottery__result').style.color = 'white'
+        lottery__result.style.display = 'block'
+        document.querySelector('.lottery__result-tilte').innerText = '恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！'
       } else if (prize === 'NONE') {
+        removeElementsByClass('activity')
         banner.style.backgroundImage =  'none'
         banner.style.background = 'black'
-        removeElementsByClass('activity')
-        addTextForLottery('銘謝惠顧')
-        document.querySelector('.lottery__result').style.color = 'white'
+        lottery__result.style.display = 'block'
+        document.querySelector('.lottery__result-tilte').innerText = '銘謝惠顧'
       } else {
         alert('系統不穩定，請再試一次')
       }
@@ -396,16 +399,15 @@
       })
 
       request.onerror = function() {
-        console.log('error')
+        alert('系統不穩定，請再試一次')
       }
-
       request.open('GET', 'https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery', true)
       request.send()
-      }) 
 
-    document.querySelector('.btn2').addEventListener('click', function() {
-      
-    })
+
+      }
+    ) 
+
 
 
 
