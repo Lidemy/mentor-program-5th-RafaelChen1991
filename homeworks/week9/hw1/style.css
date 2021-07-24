@@ -50,7 +50,7 @@ body {
   width: 600px;
   border: 2px solid #E1F4FE;
   margin-bottom: 10px;
-  resize: both;
+  resize: vertical;
 }
 
 .now-comment div {
