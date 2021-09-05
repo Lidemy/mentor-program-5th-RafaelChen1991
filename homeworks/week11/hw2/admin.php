@@ -14,6 +14,11 @@
     $username = $_SESSION['username'];
   }
 
+  if ($username === NULL) {
+    header('Location: index.php');
+    exit;
+  }
+
   $page = 1;
   if (!empty($_GET['page'])) {
     $page = intval($_GET['page']);

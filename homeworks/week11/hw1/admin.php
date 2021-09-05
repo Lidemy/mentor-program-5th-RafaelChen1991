@@ -3,6 +3,18 @@
   require_once("conn.php");
   require_once("utils.php");
 
+  $username = NULL;
+  $user = NULL;
+
+  if (!empty($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    $user = getUserFromUsername($username);
+  }
+
+  if ($user === NULL || $user['role'] !== 2) {
+    header('Location: index.php');
+    exit;
+  }
 
   $sql = "SELECT * FROM rafael_users AS U ORDER BY U.user_id DESC";
   $stmt = $conn->prepare($sql);
@@ -42,7 +54,7 @@
       <tr> 
       <td> <center><strong> Username </strong></center></td> 
       <td> <center><strong> role </strong></center></td> 
-      <td> <center><strong> chanege_role </strong></center></td> 
+      <td> <center><strong> change_role </strong></center></td> 
       </tr> 
       <?php while($row = $result->fetch_assoc()) { ?>
         <tr> <td> <?php echo escape($row['username']); ?></td> 

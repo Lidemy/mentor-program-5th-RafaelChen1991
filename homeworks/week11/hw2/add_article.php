@@ -8,6 +8,11 @@
   if (!empty($_SESSION['username'])) {
     $username = $_SESSION['username'];
   }
+
+  if ($username === NULL) {
+    header('Location: index.php');
+    exit;
+  }
 ?>
 
 <!DOCTYPE html>

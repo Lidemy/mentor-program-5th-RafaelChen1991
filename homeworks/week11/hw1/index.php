@@ -62,7 +62,7 @@
           <input type="text" name="nickname"/>
           <input type="submit" class="comment__submit-btn" />
         </form>
-        <h3>Hello! <?php echo $user['nickname']; ?> <?php if ($role == 0) {?> 您已經被停權了 <?php } ?></h3>
+        <h3>Hello! <?php echo escape($user['nickname']); ?> <?php if ($role == 0) {?> 您已經被停權了 <?php } ?></h3>
       <?php } ?>
     </div>
     <?php if ($role != 0) { ?>

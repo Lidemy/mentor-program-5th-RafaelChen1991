@@ -8,6 +8,11 @@
   $title = $_POST["title"];
   $content = $_POST["content"];
 
+  if ($username === NULL) {
+    header('Location: index.php');
+    exit;
+  }
+
 
   if (empty($title)) {
     header("Location:index.php?errCode=1");
