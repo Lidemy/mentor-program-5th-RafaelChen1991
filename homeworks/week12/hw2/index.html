@@ -1,0 +1,323 @@
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>todo-list</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://bootswatch.com/5/sandstone/bootstrap.css">
+
+  <style>
+
+  </style>
+  <script>
+    function escape(toOutput){
+      return toOutput.replace(/\&/g, '&amp;')
+          .replace(/\</g, '&lt;')
+          .replace(/\>/g, '&gt;')
+          .replace(/\"/g, '&quot;')
+          .replace(/\'/g, '&#x27')
+          .replace(/\//g, '&#x2F');
+    }
+
+    function appendCommentToDOM(container, comment, status, isPrepend) {
+      let html = ''
+      if (status == 1) {
+        html = 
+        ` <li class="list-group-item d-flex justify-content-between align-items-center todo flex-row completed">
+            <div class="todo-content">
+              <span class="badge rounded-pill bg-success completed">已完成</span>
+              <span class="content">${escape(comment)}</span>
+            </div>
+            <div class="btns">
+              <button type="button" class="btn btn-danger delete">刪除</button>
+              <button type="button" class="btn btn-secondary edit completed" data-bs-toggle="modal" data-bs-target="#edit-content">編輯</button>
+              <button type="button" class="btn btn-primary check">未完成</button>
+            </div>
+          </li>
+        `
+      } else {
+        html = 
+        ` <li class="list-group-item d-flex justify-content-between align-items-center todo flex-row">
+            <div class="todo-content">
+              <span class="badge rounded-pill bg-secondary">未完成</span>
+              <span class="content">${escape(comment)}</span>
+            </div>
+            <div class="btns">
+              <button type="button" class="btn btn-danger delete">刪除</button>
+              <button type="button" class="btn btn-secondary edit" data-bs-toggle="modal" data-bs-target="#edit-content">編輯</button>
+              <button type="button" class="btn btn-primary check">已完成</button>
+            </div>
+          </li>
+        `
+      }
+
+
+      if (isPrepend) {
+        container.prepend(html)
+      } else {
+        container.append(html)
+      }
+
+      if($('.todo').hasClass('completed')) {
+        $('.edit.completed').hide()
+      }
+    }
+
+
+    function getUrlParameter(sParam) {
+      var sPageURL = window.location.search.substring(1),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+          sParameterName = sURLVariables[i].split('=');
+
+          if (sParameterName[0] === sParam) {
+              return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+          }
+      }
+      return '';
+    };
+
+
+
+    $(document).ready( ()=> {
+      const id = getUrlParameter('id')
+    // 新增    
+      $('.btn-add').on('click', ()=> {
+        const inputValue = $('.input-todo').val()
+        appendCommentToDOM($('.list-group'), inputValue)
+        $('input[name=todo]').val('')
+      })
+
+    //刪除
+      $('.list-group').on('click', '.delete', (e) => {
+        $(e.target).closest('li').remove()
+      })
+   
+
+      //完成todo
+      $('.list-group').on('click', '.check', (e) => {
+        const btnToCheck = $(e.target)
+        const todoForCheck = $(e.target).closest('li')
+        if(btnToCheck.hasClass('completed')) {
+          todoForCheck.removeClass('completed')
+          todoForCheck.find('.content').removeClass('completed-item')
+          todoForCheck.find('.badge').removeClass('completed bg-success').addClass('bg-secondary')
+          todoForCheck.find('.badge').text('未完成')
+          btnToCheck.removeClass('completed')
+          btnToCheck.text('已完成')
+          btnToCheck.parent().find('.edit').show()
+        } else {
+          todoForCheck.addClass('completed')
+          todoForCheck.find('.content').addClass('completed-item')
+          todoForCheck.find('.badge').addClass('completed bg-success').removeClass('bg-secondary')
+          todoForCheck.find('.badge').text('已完成')
+          btnToCheck.addClass('completed')
+          btnToCheck.text('未完成')
+          btnToCheck.parent().find('.edit').hide()
+        }
+      })
+
+      //編輯todo
+      $('.row').on('click', '.edit', (e) => {
+        const oldTodo = $(e.target).closest('li').find('.content').text()
+        $('.edit-input-todo').val(oldTodo)
+        $('.confirm').click( (d) => {
+          let newTodos = $('.edit-input-todo').val()
+          $(e.target).closest('li').find('.content').text(newTodos)
+          $('.confirm').off()
+        })
+      })
+
+      //篩選
+
+      $('.row').on('click', '.filter-noncompleted', () => {
+        $('.todo.completed').removeClass('d-flex selected').hide()
+        $('.todo:not(.completed)').addClass('d-flex selected').show()
+      })
+
+      $('.row').on('click', '.filter-completed', () => {
+        $('.todo').removeClass('d-flex selected').hide()
+        $('.todo.completed').addClass('d-flex selected').show()
+      })
+
+      $('.row').on('click', '.all', () => {
+        $('.todo').addClass('d-flex selected').show()
+      })
+
+      //清除
+      $('.row').on('click', '.clean', () => {
+        $('.selected').closest('li').remove()
+      })
+
+      // save to database
+      $('.navbar').on('click', '.save', () => {
+        const clientTodoList = []
+        const oldTodos = $('.todo')
+
+        oldTodos.each( (name, value) => {
+          const clientTodo = {}
+          if ($(value).hasClass('completed')) {
+            clientTodo.status = 1
+          } else {
+            clientTodo.status = 2
+          }
+
+          clientTodo.content = $(value).find('.content').text()
+          clientTodoList.push(clientTodo)
+        })
+
+        const jsontodo = JSON.stringify(clientTodoList)
+        const newTodos = {id: id, todos: jsontodo}
+
+        $.ajax({
+          type: 'POST',
+          url:'http://mentor-program.co/mtr04group5/rafael/week12/apitodo/api_add_todos.php',
+          data:newTodos
+        })
+          .done((data) => {
+            if (id) {
+              $('.save-title').text(`您的id是 ${id}`)
+              $('.id').text(`請記住您的id，只要在網誌後面加上 ?id={您的ID} 即可訪問個人的todo`)
+            } else {
+              $.ajax({
+                type: 'GET',
+                url:`http://mentor-program.co/mtr04group5/rafael/week12/apitodo/api_todos_id.php`,
+              })
+              .done((dataID) => {
+                if (!dataID.ok) {
+                  alert(dataID.message)
+                  return
+                }
+                const id_Number = dataID.todos.length-1
+                const newID = dataID.todos[id_Number].id  
+                $('.save-title').text(`您的id是 ${newID}`)
+                $('.id').text(`請記住您的id，只要在網誌後面加上 ?id={您的ID} 即可訪問個人的todo`)
+                $('.understand').click(() => {
+                  window.location.href = `http://mentor-program.co/mtr04group5/rafael/week12/apitodo/index.html?id=${newID}`
+                })
+              })
+              }
+          })
+          .fail(err => console.log(err))
+      })
+
+      // read todo from DB by id
+      if (id) {
+        $.ajax({
+          type: 'GET',
+          url:`http://mentor-program.co/mtr04group5/rafael/week12/apitodo/api_todos.php?id=${id}`,
+        })
+        .done( (data) => {
+          if (!data.ok) {
+            alert(data.message)
+            return
+          }
+          const getTodosFromDB = JSON.parse(data.todos[0].todos)
+          for (var i = 0; i < getTodosFromDB.length; i++) {
+            appendCommentToDOM($('.list-group'), getTodosFromDB[i].content, getTodosFromDB[i].status)
+          }
+
+        })
+
+        .fail(err => console.log(err))
+      }
+
+
+
+    })
+
+
+
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-text">
+        Todos
+      </span>
+      <button type="button" class="btn btn-secondary save" data-bs-toggle="modal" data-bs-target="#save">儲存todos</button>
+    </div>
+  </nav>
+  </nav>
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="alert alert-primary" role="alert">
+          這是測試用的todo小作品
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-8">
+          <div class="mb-3">
+            <input type="text" placeholder="請輸入代辦事項" class="form-control input-todo" name="todo"/>
+          </div>
+      </div>
+      <div class="col-12 col-md-4 d-grid">
+        <button class="btn btn-primary btn-add" type="button">新增</button>
+      </div>
+      <div class="filter mt-1 mb-2"> 
+        <button class="btn btn-primary all">全部</button>
+        <button class="btn btn-primary filter-noncompleted">未完成</button>
+        <button class="btn btn-primary filter-completed">已完成</button>
+        <button class="btn btn-primary clean">清除選擇</button> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mt-4">
+        <div class="card">
+          <div class="card-header">
+            代辦事項清單
+          </div>
+          <ul class="list-group list-group-flush todos">
+          </ul>
+        </div>
+
+        <div class="modal fade" id="edit-content" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="edit-content">修改內容</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input type="text" class="form-control edit-input-todo"/>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary confirm" data-bs-dismiss="modal">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="save" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title save-title" id="save"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body id"></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary understand" data-bs-dismiss="modal">我知道了</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+</html>
